@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="年龄"/>
 
-    <Button android:id="@+id/btn_add_user"
+    <Button android:id="@+id/btn_jump_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="添加"

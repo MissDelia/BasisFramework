@@ -68,13 +68,4 @@ public class UserRepository {
         return userData;
     }
 
-    public void insertUser(final User user) {
-        FrameworkApplication.getInstance().getExecutorService().execute(new Runnable() {
-            @Override
-            public void run() {
-                FrameworkApplication.getInstance().getAppDatabase().userDao().insertAll(user);
-            }
-        });
-    }
-
 }

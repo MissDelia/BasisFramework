@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".userinfo.ui.UserInfoActivity" />
+        <activity android:name=".useradd.ui.UserAddActivity" />
     </application>
 
 </manifest>

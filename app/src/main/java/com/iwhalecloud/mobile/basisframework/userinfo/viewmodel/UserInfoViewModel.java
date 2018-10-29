@@ -20,8 +20,4 @@ public class UserInfoViewModel extends ViewModel {
         return UserRepository.getInstance().getUsers();
     }
 
-    public void insertUser(User user) {
-        UserRepository.getInstance().insertUser(user);
-    }
-
 }

@@ -37,10 +37,12 @@ public class FrameworkApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        // 线程池线程数为CPU核心数量
+        int threadNum = Runtime.getRuntime().availableProcessors();
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "database-name").build();
         ThreadFactory namedThreadFactory = Executors.defaultThreadFactory();
-        executorService = new ThreadPoolExecutor(4, 8,
+        executorService = new ThreadPoolExecutor(threadNum, threadNum * 2,
                 0L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<Runnable>(), namedThreadFactory);
         mRetrofit = new Retrofit.Builder()
