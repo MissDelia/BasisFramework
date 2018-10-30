@@ -1,4 +1,5 @@
-这是一个没有实际功能的框架，遵从MVVM架构，使用Android Architecture Components组件开发
+这是一个没有实际功能的框架，遵从MVVM架构，使用Android Architecture Components组件开发<br>
+此版本仅支持CMake，需要Android.mk的同学请等待后续更新
 
 # 简要说明
 
