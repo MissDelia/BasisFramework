@@ -20,6 +20,7 @@
     <EditText android:id="@+id/et_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="请输入年龄"/>
     <TextView
         android:layout_width="wrap_content"

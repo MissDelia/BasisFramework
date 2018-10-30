@@ -16,8 +16,10 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this)
-                .get(getViewModelClass());
+        if (getViewModelClass() != null) {
+            mViewModel = ViewModelProviders.of(this)
+                    .get(getViewModelClass());
+        }
     }
 
     protected T getViewModel() {
@@ -31,13 +33,25 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     protected abstract Class<T> getViewModelClass();
 
     /**
-     * 测试功能，不稳定
+     * 界面跳转方法（Unstable）
      * @param clz Activity的Class
      * @param bundle 参数
      */
     public void goActivity(Class<?> clz, Bundle bundle) {
-        Intent intent = new Intent(this, clz);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        // 如果是Activity才进行跳转
+        if (clz.isAssignableFrom(BaseActivity.class)) {
+            Intent intent = new Intent(this, clz);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    }
+
+    /**
+     * 界面跳转方法（Unstable）
+     * @param clz Activity的Class
+     */
+    public void goActivity(Class<?> clz) {
+        // 如果是Activity才进行跳转
+        goActivity(clz, null);
     }
 }

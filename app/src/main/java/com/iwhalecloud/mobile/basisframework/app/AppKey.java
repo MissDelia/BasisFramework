@@ -1,6 +1,7 @@
 package com.iwhalecloud.mobile.basisframework.app;
 
 /**
+ * 所有共用的Key和URI必须写入此类
  * @author MissArisha
  */
 public class AppKey {

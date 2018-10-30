@@ -13,7 +13,7 @@ import com.iwhalecloud.mobile.basisframework.app.db.dao.UserDao;
 public abstract class AppDatabase extends RoomDatabase {
     /**
      * 获取user表的DAO
-     * @return
+     * @return UserDao
      */
     public abstract UserDao userDao();
 }

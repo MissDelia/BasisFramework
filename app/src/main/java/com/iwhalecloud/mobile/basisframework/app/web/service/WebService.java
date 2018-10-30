@@ -1,7 +1,5 @@
 package com.iwhalecloud.mobile.basisframework.app.web.service;
 
-
-
 import com.iwhalecloud.mobile.basisframework.app.db.bean.User;
 
 import java.util.List;
@@ -16,7 +14,7 @@ public interface WebService {
 
     /**
      * 获取UserInfo
-     * @return
+     * @return Observable
      */
     @GET(value = "getUserInfo")
     Observable<List<User>> getUserInfo();

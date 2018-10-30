@@ -21,6 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class FrameworkApplication extends Application {
 
+    public static final boolean DEBUG = true;
+
     private static FrameworkApplication mInstance;
 
     private AppDatabase db;

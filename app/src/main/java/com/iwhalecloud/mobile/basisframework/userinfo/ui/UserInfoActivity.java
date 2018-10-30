@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.iwhalecloud.mobile.basisframework.R;
+import com.iwhalecloud.mobile.basisframework.app.base.BaseActivity;
 import com.iwhalecloud.mobile.basisframework.app.db.bean.User;
 import com.iwhalecloud.mobile.basisframework.useradd.ui.UserAddActivity;
 import com.iwhalecloud.mobile.basisframework.userinfo.viewmodel.UserInfoViewModel;
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * @author MissArisha
  */
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends BaseActivity<UserInfoViewModel> {
 
     private TextView tvUserName, tvUserAge, tvUserSex;
 
@@ -30,12 +31,16 @@ public class UserInfoActivity extends AppCompatActivity {
         initView();
     }
 
+    @Override
+    protected Class<UserInfoViewModel> getViewModelClass() {
+        return UserInfoViewModel.class;
+    }
+
     private void initView() {
         tvUserName = findViewById(R.id.tv_user_name);
         tvUserAge = findViewById(R.id.tv_user_age);
         tvUserSex = findViewById(R.id.tv_user_sex);
-        UserInfoViewModel mUserInfoViewModel = ViewModelProviders.of(this).get(UserInfoViewModel.class);
-        mUserInfoViewModel.getUsers().observe(this, new Observer<List<User>>() {
+        getViewModel().getUsers().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable List<User> users) {
                 if (users != null && users.size() > 0) {

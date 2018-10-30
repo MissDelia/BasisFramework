@@ -7,12 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.iwhalecloud.mobile.basisframework.app.base.BaseActivity;
 import com.iwhalecloud.mobile.basisframework.userinfo.ui.UserInfoActivity;
 
 /**
  * @author MissArisha
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -32,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, UserInfoActivity.class));
             }
         });
+    }
+
+    @Override
+    protected Class getViewModelClass() {
+        return null;
     }
 
     /**
