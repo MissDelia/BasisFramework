@@ -22,20 +22,28 @@ public class LogUtil {
     }
 
     public void v(String msg) {
-        if(FrameworkApplication.DEBUG) {
-            v(DEFAULT_TAG, msg);
-        }
+        v(DEFAULT_TAG, msg);
+    }
+
+    public void i(String msg) {
+        i(DEFAULT_TAG, msg);
+    }
+
+    public void d(String msg) {
+        d(DEFAULT_TAG, msg);
+    }
+
+    public void w(String msg) {
+        w(DEFAULT_TAG, msg);
+    }
+
+    public void e(String msg) {
+        e(DEFAULT_TAG, msg);
     }
 
     public void v(String tag, String msg) {
         if(FrameworkApplication.DEBUG && msg != null) {
             Log.v(tag, generateLogcatText(Thread.currentThread().getStackTrace(), msg, msg));
-        }
-    }
-
-    public void i(String msg) {
-        if(FrameworkApplication.DEBUG) {
-            i(DEFAULT_TAG, msg);
         }
     }
 
@@ -45,33 +53,15 @@ public class LogUtil {
         }
     }
 
-    public void d(String msg) {
-        if(FrameworkApplication.DEBUG) {
-            d(DEFAULT_TAG, msg);
-        }
-    }
-
     public void d(String tag, String msg) {
         if(FrameworkApplication.DEBUG && msg != null) {
             Log.d(tag, generateLogcatText(Thread.currentThread().getStackTrace(), msg, msg));
         }
     }
 
-    public void w(String msg) {
-        if(FrameworkApplication.DEBUG) {
-            w(DEFAULT_TAG, msg);
-        }
-    }
-
     public void w(String tag, String msg) {
         if(FrameworkApplication.DEBUG && msg != null) {
             Log.w(tag, generateLogcatText(Thread.currentThread().getStackTrace(), msg, msg));
-        }
-    }
-
-    public void e(String msg) {
-        if(FrameworkApplication.DEBUG) {
-            e(DEFAULT_TAG, msg);
         }
     }
 
