@@ -33,7 +33,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     protected abstract Class<T> getViewModelClass();
 
     /**
-     * 界面跳转方法（Unstable）
+     * 界面跳转方法（Stable）
      * @param clz Activity的Class
      * @param bundle 参数
      */
@@ -41,17 +41,18 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
         // 如果是Activity才进行跳转
         if (clz.isAssignableFrom(BaseActivity.class)) {
             Intent intent = new Intent(this, clz);
-            intent.putExtras(bundle);
+            if (bundle != null) {
+                intent.putExtras(bundle);
+            }
             startActivity(intent);
         }
     }
 
     /**
-     * 界面跳转方法（Unstable）
+     * 界面跳转方法（Stable）
      * @param clz Activity的Class
      */
     public void goActivity(Class<?> clz) {
-        // 如果是Activity才进行跳转
         goActivity(clz, null);
     }
 }

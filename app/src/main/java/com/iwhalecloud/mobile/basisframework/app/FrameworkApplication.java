@@ -30,6 +30,17 @@ public class FrameworkApplication extends Application {
     private ExecutorService executorService;
 
     private Retrofit mRetrofit;
+    // 线程池线程数为CPU核心数量
+    private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
+    // 核心线程数量大小
+    private static final int corePoolSize = Math.max(2, Math.min(CPU_COUNT - 1, 4));
+    /*
+     * 如果是CPU密集型应用,则线程池大小设置为N+1
+     * 如果是IO密集型应用,则线程池大小设置为2N+1
+     */
+    private static final int maximumPoolSize = CPU_COUNT * 2 + 1;
+    // 线程空闲后的存活时长
+    private static final int keepAliveTime = 30;
 
     public synchronized static FrameworkApplication getInstance() {
         return mInstance;
@@ -39,14 +50,14 @@ public class FrameworkApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-        // 线程池线程数为CPU核心数量
-        int threadNum = Runtime.getRuntime().availableProcessors();
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "database-name").build();
         ThreadFactory namedThreadFactory = Executors.defaultThreadFactory();
-        executorService = new ThreadPoolExecutor(threadNum, threadNum * 2,
-                0L, TimeUnit.MILLISECONDS,
+        executorService = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
+                keepAliveTime, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<Runnable>(), namedThreadFactory);
+        // 可选择不设置超时
+        ((ThreadPoolExecutor) executorService).allowCoreThreadTimeOut(true);
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(AppKey.getInstance().url.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())

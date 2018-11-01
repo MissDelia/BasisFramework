@@ -51,4 +51,5 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'// 转换器，请求结果转换成Model
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'// 配合RxJava 使用
+    implementation project(':iWhaleCore')
 }
