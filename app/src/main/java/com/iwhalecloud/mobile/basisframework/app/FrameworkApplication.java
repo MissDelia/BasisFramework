@@ -26,9 +26,15 @@ public class FrameworkApplication extends Application {
     private static FrameworkApplication mInstance;
 
     private AppDatabase db;
-
+    /*
+     * 项目中的线程池有且仅有一个
+     * 如果并发量大于一下maximumPoolSize，应自己优化代码，不允许修改maximumPoolSize
+     */
     private ExecutorService executorService;
-
+    /*
+     * 如果要多个基于不同IP的接口，必须在Application中创建多个Retrofit实例使用
+     * 不允许在其它地方创建Retrofit实例，以免浪费内存
+     */
     private Retrofit mRetrofit;
     // 线程池线程数为CPU核心数量
     private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
@@ -58,11 +64,6 @@ public class FrameworkApplication extends Application {
                 new LinkedBlockingQueue<Runnable>(), namedThreadFactory);
         // 可选择不设置超时
         ((ThreadPoolExecutor) executorService).allowCoreThreadTimeOut(true);
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(AppKey.getInstance().url.baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
     }
 
     /**
@@ -81,7 +82,17 @@ public class FrameworkApplication extends Application {
         return executorService;
     }
 
-    public Retrofit getRetrofit() {
+    public synchronized Retrofit getRetrofit() {
+        /*
+         * 防止过多Retrofit实例在onCreate中创建造成内存浪费，改为使用时创建
+         */
+        if (mRetrofit == null) {
+            mRetrofit = new Retrofit.Builder()
+                    .baseUrl(AppKey.getInstance().url.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+        }
         return mRetrofit;
     }
 }
