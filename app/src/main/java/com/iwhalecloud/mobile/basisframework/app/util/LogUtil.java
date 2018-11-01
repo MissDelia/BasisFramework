@@ -28,7 +28,7 @@ public class LogUtil {
     }
 
     public void v(String tag, String msg) {
-        if(FrameworkApplication.DEBUG) {
+        if(FrameworkApplication.DEBUG && msg != null) {
             Log.v(tag, generateLogcatText(Thread.currentThread().getStackTrace(), msg, msg));
         }
     }
@@ -40,7 +40,7 @@ public class LogUtil {
     }
 
     public void i(String tag, String msg) {
-        if(FrameworkApplication.DEBUG) {
+        if(FrameworkApplication.DEBUG && msg != null) {
             Log.i(tag, generateLogcatText(Thread.currentThread().getStackTrace(), msg, msg));
         }
     }
@@ -52,7 +52,7 @@ public class LogUtil {
     }
 
     public void d(String tag, String msg) {
-        if(FrameworkApplication.DEBUG) {
+        if(FrameworkApplication.DEBUG && msg != null) {
             Log.d(tag, generateLogcatText(Thread.currentThread().getStackTrace(), msg, msg));
         }
     }
@@ -64,7 +64,7 @@ public class LogUtil {
     }
 
     public void w(String tag, String msg) {
-        if(FrameworkApplication.DEBUG) {
+        if(FrameworkApplication.DEBUG && msg != null) {
             Log.w(tag, generateLogcatText(Thread.currentThread().getStackTrace(), msg, msg));
         }
     }
@@ -76,7 +76,7 @@ public class LogUtil {
     }
 
     public void e(String tag, String msg) {
-        if(FrameworkApplication.DEBUG) {
+        if(FrameworkApplication.DEBUG && msg != null) {
             Log.e(tag, generateLogcatText(Thread.currentThread().getStackTrace(), msg, msg));
         }
     }
