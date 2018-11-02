@@ -61,13 +61,13 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     protected abstract Class<T> getViewModelClass();
 
     /**
-     * 界面跳转方法（Unstable）
+     * 界面跳转方法（Stable）
      * @param clz Activity的Class
      * @param bundle 参数
      */
     public void goActivity(Class<?> clz, Bundle bundle) {
         // 如果是Activity才进行跳转
-        if (clz.isAssignableFrom(BaseActivity.class)) {
+        if (BaseActivity.class.isAssignableFrom(clz)) {
             Intent intent = new Intent(this, clz);
             if (bundle != null) {
                 intent.putExtras(bundle);
@@ -77,7 +77,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     }
 
     /**
-     * 界面跳转方法（Unstable）
+     * 界面跳转方法（Stable）
      * @param clz Activity的Class
      */
     public void goActivity(Class<?> clz) {
