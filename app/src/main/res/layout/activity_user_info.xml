@@ -2,26 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <TextView android:id="@+id/tv_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="姓名"/>
+    <View android:layout_width="match_parent"
+        android:layout_height="30dp"/>
 
-    <TextView android:id="@+id/tv_user_sex"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="性别"/>
+        android:orientation="horizontal">
 
-    <TextView android:id="@+id/tv_user_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="年龄"/>
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="姓名"
+            android:textSize="17sp"
+            android:gravity="center"/>
 
-    <Button android:id="@+id/btn_jump_add"
-        android:layout_width="wrap_content"
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"/>
+
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="年龄"
+            android:textSize="17sp"
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"/>
+
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="性别"
+            android:textSize="17sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_333333"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_user_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="添加"
-        android:padding="10dp"/>
+        android:background="@color/color_CCCCCC"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <Button android:id="@+id/btn_jump_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            android:padding="10dp"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
 </LinearLayout>

@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,6 +16,7 @@ import com.iwhalecloud.mobile.basisframework.R;
 import com.iwhalecloud.mobile.basisframework.app.base.BaseActivity;
 import com.iwhalecloud.mobile.basisframework.app.db.bean.User;
 import com.iwhalecloud.mobile.basisframework.useradd.ui.UserAddActivity;
+import com.iwhalecloud.mobile.basisframework.userinfo.adapter.UserInfoAdapter;
 import com.iwhalecloud.mobile.basisframework.userinfo.viewmodel.UserInfoViewModel;
 
 import java.util.List;
@@ -22,7 +26,7 @@ import java.util.List;
  */
 public class UserInfoActivity extends BaseActivity<UserInfoViewModel> {
 
-    private TextView tvUserName, tvUserAge, tvUserSex;
+    private UserInfoAdapter mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,17 +41,19 @@ public class UserInfoActivity extends BaseActivity<UserInfoViewModel> {
     }
 
     private void initView() {
-        tvUserName = findViewById(R.id.tv_user_name);
-        tvUserAge = findViewById(R.id.tv_user_age);
-        tvUserSex = findViewById(R.id.tv_user_sex);
+        RecyclerView mUserList = findViewById(R.id.rv_user_list);
+        mAdapter = new UserInfoAdapter();
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mUserList.setLayoutManager(layoutManager);
+        mUserList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        mUserList.setAdapter(mAdapter);
+
         getViewModel().getUsers().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable List<User> users) {
-                if (users != null && users.size() > 0) {
-                    tvUserName.setText(users.get(users.size() - 1).getName());
-                    tvUserAge.setText(String.valueOf(users.get(users.size() - 1).getAge()));
-                    tvUserSex.setText(users.get(users.size() - 1).getSex());
-                }
+                mAdapter.setData(users);
             }
         });
         findViewById(R.id.btn_jump_add).setOnClickListener(new View.OnClickListener() {

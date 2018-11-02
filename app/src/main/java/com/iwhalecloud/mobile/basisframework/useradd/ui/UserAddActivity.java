@@ -37,6 +37,10 @@ public class UserAddActivity extends BaseActivity<UserAddViewModel> {
                 info.setAge(Integer.parseInt(etAge.getText().toString()));
                 info.setSex(etSex.getText().toString());
                 getViewModel().insertUser(info);
+                ToastUtil.getInstance().showToast("添加用户成功", Gravity.CENTER);
+                etName.setText("");
+                etAge.setText("");
+                etSex.setText("");
             }
         });
     }

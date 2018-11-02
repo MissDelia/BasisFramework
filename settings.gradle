@@ -1,1 +1,1 @@
-include ':app', ':iWhaleCore'
+include ':app', ':iWhaleCustomView'
