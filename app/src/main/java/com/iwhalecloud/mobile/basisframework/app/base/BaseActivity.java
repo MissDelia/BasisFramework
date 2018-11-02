@@ -61,7 +61,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     protected abstract Class<T> getViewModelClass();
 
     /**
-     * 界面跳转方法（Stable）
+     * 界面跳转方法（Unstable）
      * @param clz Activity的Class
      * @param bundle 参数
      */
@@ -77,7 +77,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     }
 
     /**
-     * 界面跳转方法（Stable）
+     * 界面跳转方法（Unstable）
      * @param clz Activity的Class
      */
     public void goActivity(Class<?> clz) {

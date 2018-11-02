@@ -59,6 +59,7 @@ public class UserInfoActivity extends BaseActivity<UserInfoViewModel> {
         findViewById(R.id.btn_jump_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                goActivity(UserAddActivity.class);
                 startActivity(new Intent(UserInfoActivity.this, UserAddActivity.class));
             }
         });

@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //TODO --Now go to info interface
+//                goActivity(UserInfoActivity.class);
                 startActivity(new Intent(MainActivity.this, UserInfoActivity.class));
             }
         });
